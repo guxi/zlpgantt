@@ -1,4 +1,6 @@
 import './index.css';
+//import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 //////// file_drog ////////
 const dragWrapper = document.getElementById("drag_test");

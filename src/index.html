@@ -3,20 +3,54 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hello World!</title>
-
-
 </head>
 
 <body>
+  <div class="container-fluid border  my-3">
+    <div class="row">
 
-  <div class="file_drag" id="drag_test">
-    <h2>File对象</h2>
-    <span>往这里拖文件</span>
+      <div class="col-md-4  ">
+        <div class="file_drag" id="drag_test">
+          <h2>File对象</h2>
+          <span>往这里拖文件</span>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+          <label for="floatingPassword">Password</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+          <label for="floatingPassword">Password</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+          <label for="floatingPassword">Password</label>
+        </div>
+      </div>
+      <div class="col-md-8  bg-light" id="echarts">
+
+      </div>
+      <!-- <div class="col  bg-light">
+        <div id="echarts1" style="height: 400px;"></div>
+      </div> -->
+    </div>
+
   </div>
-
-  <div id="echarts" style="height: 400px;"></div>
-
   <script src="./renderer.js"></script>
 </body>
 
