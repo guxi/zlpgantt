@@ -1,9 +1,11 @@
-import './index.css';
+//import './index.css';
 //import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 //////// file_drog ////////
 const dragWrapper = document.getElementById("drag_test");
+//const dataTable = document.getElementById("data_Table");
+
 dragWrapper.addEventListener("drop", (e) => {
   console.log("begain drop!");
   e.preventDefault();
@@ -34,9 +36,10 @@ var source1
 
 window.electronAPI.handleGetData(
   (_event, value) => {
-
-    let data = JSON.parse(value).data;
+    setDataTable("dd");
     let title = JSON.parse(value).title;
+    let data = JSON.parse(value).data;
+
 
     let source = [];
     let tt = []
@@ -60,9 +63,16 @@ window.electronAPI.handleGetData(
   }
 );
 
+const setDataTable = (jsondata) => {
+
+  const table = require('./datatable.js');
+  table.setdataTable(jsondata, "data_Table");
+}
+
 const ff = (s) => {
   const charts = require('./chart.js')
   charts.setEcharts(s, 'echarts');
+
 }
 
 //ff(source1);
