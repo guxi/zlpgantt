@@ -25,7 +25,10 @@ const setdataTable = function (data, divid) {
   tr_data.forEach(e => {
     let trd = document.createElement("tr");
     e.forEach(ee => {
-      let td = document.createElement("td");
+      let td
+      if (typeof ee == "string") { td = document.createElement("th"); }
+      else td = document.createElement("td");
+
       td.innerHTML = ee;
       trd.appendChild(td);
     })
@@ -33,21 +36,6 @@ const setdataTable = function (data, divid) {
   })
   data_Table.replaceChild(tbody_R, tbody);
 
-
-
-
-  //table.innerHTML() =
-  // let dataStr = "<table class='table'> id='data_Table'"
-  //   + "<thead>"
-  //   + "<tr>"
-  //   + "  <th scope='col'>#</th>"
-  //   + "  <th scope='col'>First</th>"
-  //   + "  <th scope='col'>Last</th>"
-  //   + "  <th scope='col'>Handle</th>"
-  //   + "</tr>"
-  //   + "</thead></table>";
-
-  //div.replaceChild(dataStr, data_Table);
 
 }
 
