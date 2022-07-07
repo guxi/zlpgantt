@@ -36,7 +36,7 @@ var source1
 
 window.electronAPI.handleGetData(
   (_event, value) => {
-    setDataTable("dd");
+    setDataTable(value);
     let title = JSON.parse(value).title;
     let data = JSON.parse(value).data;
 
@@ -50,6 +50,7 @@ window.electronAPI.handleGetData(
     source.push(tt);
     console.log(source);
 
+    let ddd = [];
     data.forEach(e => {
       let dd = [];
       for (var i = 0; i < 3; i++) {
@@ -57,8 +58,10 @@ window.electronAPI.handleGetData(
           e[i] = +(e[i]) //字符串转浮点     
         dd.push(e[i]);
       }
-      source.push(dd);
+      ddd.push(dd);
     })
+    ddd.reverse();
+    ddd.forEach((e) => { source.push(e); })
     ff(source);
   }
 );
