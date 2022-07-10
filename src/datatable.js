@@ -1,7 +1,7 @@
 
 
 const setdataTable = function (data, divid) {
-  let dragdiv = document.getElementById("drag_test");
+  let dragdiv = document.getElementById("data");
   let div = document.getElementById("data_Table_div");
   let title = JSON.parse(data).title;
   let tr_data = JSON.parse(data).data;
@@ -11,7 +11,7 @@ const setdataTable = function (data, divid) {
   let Div_R = document.createElement("div");
 
   Div_R.setAttribute("id", "data_Table_div");
-  table_R.setAttribute("class", "table table-striped");
+  table_R.setAttribute("class", "table table-hover");
 
   let trh = document.createElement("tr");
   title.forEach(e => {
