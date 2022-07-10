@@ -11,3 +11,10 @@
   height: 200px;
   background: pink;
 }
+
+.json-result {
+  border: 0;
+  padding: 5px;
+  background-color: #fff;
+  font-size: 12px;
+}
