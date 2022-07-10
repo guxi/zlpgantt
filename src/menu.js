@@ -10,23 +10,18 @@ const template = [{
       dialog.showOpenDialog({
         properties: ['openFile']
       }).then(result => {
-
-        console.log("result.filePaths[0]:" + result.filePaths[0]);
         data = fs.readFileSync(result.filePaths[0], "utf-8");
-        console.log(data);
         mainWindow.webContents.send('GetData', data);
-
       }).catch(err => {
         console.log(err)
       })
-
     }
   },
   {
     label: '示例',
     click: () => {
 
-      console.log("PAth ================:" + path.join(__dirname, 'samplesource.txt'));
+      console.log(path.join(__dirname, 'samplesource.json'));
       data = fs.readFileSync(path.join(__dirname, 'samplesource.json'), "utf-8");
 
       mainWindow.webContents.send('GetData', data);
@@ -52,7 +47,21 @@ const template = [{
   label: '帮助',
   submenu: [{
     label: '帮助',
-    role: 'help'
+    click: () => {//点击事件
+      var win = new BrowserWindow({
+        width: 500,
+        height: 400,
+        webPreferences: {
+          nodeIntegration: true,
+          contextIsolation: false
+        }
+      })
+      win.setMenu(null);
+      win.loadFile(path.join(__dirname, 'help.html'))
+      win.on('closed', () => {
+        win = null
+      })
+    }
   }, {
     label: '关于',
     role: 'about'
@@ -61,12 +70,6 @@ const template = [{
 
 ];
 
-const setMenu = () => {
-
-  var list = Menu.buildFromTemplate(template);
-  Menu.setApplicationMenu(list);
-}
-
-
-export { setMenu };
+var list = Menu.buildFromTemplate(template);
+Menu.setApplicationMenu(list);
 

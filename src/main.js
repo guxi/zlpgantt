@@ -17,6 +17,7 @@ const createWindow = () => {
 
   // Create the browser window.
   const mainWindow = new BrowserWindow({
+    transparent: true,
     // transparent: true,
     width: 800,
     height: 600,
@@ -40,7 +41,7 @@ const createWindow = () => {
 
   })
 
-
+  // require(path.join(__dirname, 'menu.js'));
 
   /**
    * 设置菜单
@@ -91,7 +92,17 @@ const createWindow = () => {
     label: '帮助',
     submenu: [{
       label: '帮助',
-      role: 'help'
+      click: () => {//点击事件
+        var win = new BrowserWindow({
+          width: 400,
+          height: 550,
+        })
+        win.setMenu(null);
+        win.loadFile(path.join(__dirname, 'help.html'))
+        win.on('closed', () => {
+          win = null
+        })
+      }
     }, {
       label: '关于',
       role: 'about'
