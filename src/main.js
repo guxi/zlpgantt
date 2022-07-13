@@ -1,8 +1,8 @@
 const { app, BrowserWindow, ipcMain, Menu, dialog } = require('electron');
 const path = require('path');
 const fs = require("fs");
-const menu = require("./menu.js")
-
+//const menu = require("./menu.js")
+const datafile = require("./get-data-file.js");
 
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -31,12 +31,30 @@ const createWindow = () => {
 
 
   ipcMain.on('set-DrogFile', (event, filePath) => {
-    try {
-      data = fs.readFileSync(filePath, "utf-8");
-      mainWindow.webContents.send('GetData', data);
-    } catch (err) {
-      console.log(err)
-    };
+    let fillesuffix = filePath.substring(filePath.lastIndexOf("."));
+    console.log("fillesuffix: " + fillesuffix);
+    let data;
+    console.log(filePath);
+    if (fillesuffix == ".xlsx") {
+      console.log("11111111111111");
+      data = datafile.getXlsxFile(filePath);
+
+    }
+    else {
+      console.log("2222222222222222");
+      data = datafile.getJsonFile(filePath);
+    }
+    if (data != null)
+      console.log(data);
+    mainWindow.webContents.send('GetData', data);
+    // try {
+    //   data = fs.readFileSync(filePath, "utf-8");
+    //   mainWindow.webContents.send('GetData', data);
+    // } catch (err) {
+    //   console.log(err)
+    // };
+
+
     // console.log("handleFileOpen data: " + data);
 
   })
@@ -55,7 +73,8 @@ const createWindow = () => {
         dialog.showOpenDialog({
           properties: ['openFile']
         }).then(result => {
-          data = fs.readFileSync(result.filePaths[0], "utf-8");
+          let data = datafile.getJsonFile(result.filePaths[0]);
+          // data = fs.readFileSync(result.filePaths[0], "utf-8");
           mainWindow.webContents.send('GetData', data);
         }).catch(err => {
           console.log(err)
@@ -66,9 +85,10 @@ const createWindow = () => {
       label: '示例',
       click: () => {
 
-        console.log(path.join(__dirname, 'samplesource.json'));
-        data = fs.readFileSync(path.join(__dirname, 'samplesource.json'), "utf-8");
-
+        //console.log(path.join(__dirname, 'samplesource.json'));
+        let fpath = path.join(__dirname, 'samplesource.json')
+        // data = fs.readFileSync(path.join(__dirname, 'samplesource.json'), "utf-8");
+        let data = datafile.getJsonFile(fpath);
         mainWindow.webContents.send('GetData', data);
       }
 

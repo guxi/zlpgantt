@@ -25,14 +25,14 @@ dragWrapper.addEventListener("dragover", (e) => {
 ////////// end file drog ////////////
 
 //////////// begain echarts ///////////
-var source1
-  = [
-    ['项目', '开始时间', '持续时间'],
-    ['a', 43.3, 5.8,],
-    ['b', 83.1, 43.4],
-    ['C', 86.4, 65.2],
-    ['d', 72.4, 178.9]
-  ];
+// var source1
+//   = [
+//     ['项目', '开始时间', '持续时间'],
+//     ['a', 43.3, 5.8,],
+//     ['b', 83.1, 43.4],
+//     ['C', 86.4, 65.2],
+//     ['d', 72.4, 178.9]
+//   ];
 
 window.electronAPI.handleGetData(
   (_event, value) => {
