@@ -1,5 +1,4 @@
 
-
 const setdataTable = function (data, divid) {
   let dragdiv = document.getElementById("data");
   let div = document.getElementById("data_Table_div");
@@ -39,16 +38,7 @@ const setdataTable = function (data, divid) {
   dragdiv.replaceChild(Div_R, div);
 
 }
-
-
 export { setdataTable };
-
-
-
-// const setdataTable = function (data, divid) {
-
-//   var div = document.getElementById("data_Table_div");
-//   let data_Table = document.getElementById("data_Table");
 
 
 

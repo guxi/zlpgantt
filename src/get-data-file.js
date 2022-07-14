@@ -1,14 +1,12 @@
 
-const fs = require("fs");
+
 
 const getXlsxFile = (filepath) => {
   const nodeXlsx = require("node-xlsx");
   try {
     let data = nodeXlsx.parse(filepath);
-
     //xlsx文件第一个表格的数据在data内，为一个数组
     //{"name":"Sheet1","data":[["项目","开始时间","持续时间"],["a",45.8,33],["f",45,33.8]]}
-
     let returnData = {};
     let dd = [];
     data[0].data.forEach((e, index) => {
@@ -23,19 +21,18 @@ const getXlsxFile = (filepath) => {
 
     return JSONData;
   } catch (err) {
-    console.log("getJsonFile error:" + err)
+    console.log("getExcellFile error:" + err)
   };
 }
 
 const getJsonFile = (filepath) => {
   try {
+    const fs = require("fs");
     let data = fs.readFileSync(filepath, "utf-8");
-    // console.log("data:" + data)
     return data;
   } catch (err) {
     console.log("getJsonFile error:" + err)
   };
 
 }
-
 export { getXlsxFile, getJsonFile }

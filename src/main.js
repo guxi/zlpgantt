@@ -21,6 +21,7 @@ const createWindow = () => {
     // transparent: true,
     width: 800,
     height: 600,
+    icon: path.join(__dirname, 'gantt5.png'),
     webPreferences: {
       //nodeIntegration: true,
       enableRemoteModule: true,
@@ -105,6 +106,7 @@ const createWindow = () => {
         var win = new BrowserWindow({
           width: 400,
           height: 600,
+          icon: path.join(__dirname, 'icon.jpg')
         })
         win.setMenu(null);
         win.loadFile(path.join(__dirname, 'help.html'))
@@ -114,7 +116,15 @@ const createWindow = () => {
       }
     }, {
       label: '关于',
-      role: 'about'
+      click: () => {
+        dialog.showMessageBox({
+          title: "关于",
+          button: "确定",
+          type: "info",
+          message: "甘特图生成器"
+        });
+      }
+      //  role: 'about'
     }]
   },
 
