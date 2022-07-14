@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain, Menu, dialog } = require('electron');
 const path = require('path');
-const fs = require("fs");
+// const fs = require("fs");
 //const menu = require("./menu.js")
 const datafile = require("./get-data-file.js");
 
@@ -29,34 +29,16 @@ const createWindow = () => {
     }
   });
 
-
   ipcMain.on('set-DrogFile', (event, filePath) => {
     let fillesuffix = filePath.substring(filePath.lastIndexOf("."));
-    console.log("fillesuffix: " + fillesuffix);
     let data;
-    console.log(filePath);
     if (fillesuffix == ".xlsx") {
-      console.log("11111111111111");
       data = datafile.getXlsxFile(filePath);
-
     }
     else {
-      console.log("2222222222222222");
       data = datafile.getJsonFile(filePath);
     }
-    if (data != null)
-      console.log(data);
     mainWindow.webContents.send('GetData', data);
-    // try {
-    //   data = fs.readFileSync(filePath, "utf-8");
-    //   mainWindow.webContents.send('GetData', data);
-    // } catch (err) {
-    //   console.log(err)
-    // };
-
-
-    // console.log("handleFileOpen data: " + data);
-
   })
 
   // require(path.join(__dirname, 'menu.js'));
@@ -71,10 +53,20 @@ const createWindow = () => {
       label: '打开',
       click: () => {
         dialog.showOpenDialog({
-          properties: ['openFile']
+          properties: ['openFile'],
+          filters: [
+            { name: 'Gantt', extensions: ['json', 'JSON', 'xlsx', 'txt'] }
+          ]
         }).then(result => {
-          let data = datafile.getJsonFile(result.filePaths[0]);
-          // data = fs.readFileSync(result.filePaths[0], "utf-8");
+          let filePath = result.filePaths[0];
+          let fillesuffix = filePath.substring(filePath.lastIndexOf("."));
+          let data;
+          if (fillesuffix == ".xlsx") {
+            data = datafile.getXlsxFile(filePath);
+          }
+          else {
+            data = datafile.getJsonFile(filePath);
+          }
           mainWindow.webContents.send('GetData', data);
         }).catch(err => {
           console.log(err)
@@ -84,10 +76,7 @@ const createWindow = () => {
     {
       label: '示例',
       click: () => {
-
-        //console.log(path.join(__dirname, 'samplesource.json'));
         let fpath = path.join(__dirname, 'samplesource.json')
-        // data = fs.readFileSync(path.join(__dirname, 'samplesource.json'), "utf-8");
         let data = datafile.getJsonFile(fpath);
         mainWindow.webContents.send('GetData', data);
       }
@@ -115,7 +104,7 @@ const createWindow = () => {
       click: () => {//点击事件
         var win = new BrowserWindow({
           width: 400,
-          height: 550,
+          height: 600,
         })
         win.setMenu(null);
         win.loadFile(path.join(__dirname, 'help.html'))

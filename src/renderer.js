@@ -12,7 +12,7 @@ dragWrapper.addEventListener("drop", (e) => {
   const files = e.dataTransfer.files;
   if (files && files.length > 0) {
     const path = files[0].path;
-    console.log(path);
+    //  console.log(path);
     window.electronAPI.setDrogFile(path);
     console.log("end drop!");
   }
