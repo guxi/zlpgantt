@@ -21,7 +21,7 @@ const createWindow = () => {
     // transparent: true,
     width: 800,
     height: 600,
-    icon: path.join(__dirname, 'gantt5.png'),
+    icon: path.join(__dirname, 'gantt6.png'),
     webPreferences: {
       //nodeIntegration: true,
       enableRemoteModule: true,
@@ -106,7 +106,7 @@ const createWindow = () => {
         var win = new BrowserWindow({
           width: 400,
           height: 600,
-          icon: path.join(__dirname, 'icon.jpg')
+          icon: path.join(__dirname, 'gantt6ß.png')
         })
         win.setMenu(null);
         win.loadFile(path.join(__dirname, 'help.html'))
